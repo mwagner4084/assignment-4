@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3rd Party
+    'crispy_forms',
+    'crispy_bootstrap5',
+    # Local
+    'accounts.apps.AccountsConfig',
     'twits.apps.TwitsConfig',
 ]
 
@@ -115,6 +120,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5" # new
+CRISPY_TEMPLATE_PACK = "bootstrap5" 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
