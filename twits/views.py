@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-#from django.http import JsonResponse
+from django.http import JsonResponse
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, FormView
@@ -116,12 +116,11 @@ class TwitDetailCommentCreateView(LoginRequiredMixin, View):
         view = CommentCreatePostView.as_view()
         return view(request, *args, **kwargs)
 
-"""
 class TwitLikeView(LoginRequiredMixin, View):
-    ""Article Like View""
+    """Article Like View"""
 
     def get(self, request, *args, **kwargs):
-        ""GET Request""
+        """GET Request"""
 
         # Get out the data from the GET request
         twit_id = request.GET.get("twit_id", None)
@@ -147,4 +146,3 @@ class TwitLikeView(LoginRequiredMixin, View):
                 "success": True,
             }
         )
-"""
