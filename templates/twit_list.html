@@ -4,6 +4,7 @@
     Tweeter Feed
 {% endblock title %}
 
+{% block content%}
 {% for twit in twit_list %}
 <div class="card">
     <div class="card-header justify-content-center align-items-center">
@@ -73,27 +74,3 @@
 </footer>
 
 {% endblock %}
-
-
-
-
-
-
-
-
-{% block content %}
-  <h1>
-    Tweeter Feed
-  </h1>
-  {% for twit in twit_list %}
-    <div class="twit-box">
-      {% include 'partials/_twit_body_with_buttons.html' %}
-      {% if twit.comments.exists %}
-        <br>
-        {% include 'partials/_comment.html' %}
-      {% endif %}
-      <br>
-      {% include 'partials/_comment_buttons.html' %}
-    </div>
-  {% endfor %}
-{% endblock content %}
