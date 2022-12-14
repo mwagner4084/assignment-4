@@ -34,10 +34,10 @@ class Twit(models.Model):
         self.modified = timezone.now()
         return super(Twit, self).save(*args, **kwargs)
     def get_absolute_url(self):
-        return reverse("twit_list", kwargs={"pk": self.pk})
+        return reverse("twits:twit_list", kwargs={"pk": self.pk})
     def get_like_url(self):
         """ Get like url based on pk """
-        return reverse("twit_like", kwargs={"pk": self.pk})
+        return reverse("twits:twit_like", kwargs={"pk": self.pk})
     class Meta:
         ordering = ("-created",)
 
