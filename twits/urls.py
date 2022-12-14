@@ -8,7 +8,7 @@ from .views import (
     TwitUpdateView,
     TwitLikeView,
 )
-
+app_name = 'twits'
 
 urlpatterns = [
     path(

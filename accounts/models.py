@@ -13,28 +13,23 @@ from django.contrib.auth.models import AbstractUser
 import django.utils.timezone
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
-from twits.models import Twit
+from twits.models import Twit, Comment
 
 class CustomUser(AbstractUser):
     """ Custom User Model """
 
     first_name = models.CharField(
         max_length=150,
-        verbose_name='first_name'
+        verbose_name='first name'
     )
     last_name = models.CharField(
         max_length=150,
-        verbose_name='last_name'
+        verbose_name='last name'
     )
     date_of_birth = models.DateField(
-        auto_now=False,
-        verbose_name='date_of_birth',
-    )
-    email = models.EmailField(
-        blank=True, 
-        unique=True,
-        max_length=254, 
-        verbose_name='email_address'
+        default=django.utils.timezone.now,
+        null=False,
+        blank=False,
     )
     username = models.CharField(
         error_messages={'unique': 'A user with that username already exists.'}, 
@@ -79,9 +74,9 @@ class CustomUser(AbstractUser):
     )
 
     # all user to login with email
-    USERNAME_FIELD = 'email' 
+    USERNAME_FIELD = 'username' 
     # username required by default
-    REQUIRED_FIELDS = ['username', 'password']
+    REQUIRED_FIELDS = ['email', 'password']
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -96,11 +91,14 @@ class CustomUser(AbstractUser):
         return f"{self.username}"
 
     def get_absolute_url(self):
-        return reverse("profile", args=(self.pk))
+        return reverse("profile", kwargs={"pk": self.pk})
 
     def twits(self):
-        obj = Twit.objects.filter(author=self)
+        obj = Twit.objects.filter(user=self)
         return obj
 
     def num_of_twits(self):
-        return Twit.objects.filter(author=self).count()
+        return Twit.objects.filter(user=self).count()
+    
+    def all_comments(self):
+        return Comment.objects.filter(user=self)

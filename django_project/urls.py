@@ -19,8 +19,8 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    #path("accounts/", include("accounts.urls")),
+    path("accounts/", include("accounts.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("twits/", include("twits.urls")),
-    path("", RedirectView.as_view(pattern_name="twit_list"), name="home"),
+    path("", RedirectView.as_view(pattern_name="twit_list")),
 ]

@@ -7,10 +7,11 @@ from django.utils import timezone
 class Twit(models.Model):
     """A single Twit that a user creates"""
 
-    author = models.ForeignKey(
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name="twits",
         on_delete=models.CASCADE,
+        null=False,
     )
     body = models.TextField()
     image_url = models.URLField(blank=True)
@@ -26,14 +27,14 @@ class Twit(models.Model):
         return self.body[:30]
     def comment_count(self):
         """ Get number of comments """
-        return Comment.objects.filter(post=self).count()
+        return self.comments.count()
     def save(self, *args, **kwargs):
         if not self.id:
             self.created = timezone.now()
         self.modified = timezone.now()
         return super(Twit, self).save(*args, **kwargs)
     def get_absolute_url(self):
-        return reverse("twit_detail", kwargs={"pk": self.pk})
+        return reverse("twit_list", kwargs={"pk": self.pk})
     def get_like_url(self):
         """ Get like url based on pk """
         return reverse("twit_like", kwargs={"pk": self.pk})
@@ -49,7 +50,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
         related_name="comments",
     )
-    author = models.ForeignKey(
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="comments",
