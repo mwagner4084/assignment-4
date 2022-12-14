@@ -11,7 +11,7 @@ class="like_button btn btn-{% if user not in user_likes %}outline{% endif %}-pri
         <h1>
             Tweeter Feed
         </h1>
-        <a href="{% url 'twit_new' %}" class="btn btn-primary float-end" style="border-radius:25px;">
+        <a href="{% url 'twits:twit_new' %}" class="btn btn-primary float-end" style="border-radius:25px;">
             New Twit
         </a>
     </div>
@@ -49,24 +49,24 @@ class="like_button btn btn-{% if user not in user_likes %}outline{% endif %}-pri
             </button>
             {% endwith %}
         </p>
-        <a href="{% url 'comment_new' twit.pk %}">
+        <a href="{% url 'twits:comment_new' twit.pk %}">
             Comment
         </a>
         {% if twit.user == user %}
         |
-        <a href="{% url 'twit_edit' twit.pk %}">
+        <a href="{% url 'twits:twit_edit' twit.pk %}">
             Edit
         </a> | 
     </a>
-        <a href="{% url 'twit_delete' twit.pk %}">
+        <a href="{% url 'twits:twit_delete' twit.pk %}">
             Delete
         </a>
-    </div>
         {% endif %}
+    </div>
     <div class="card-footer text-center text-muted">
         <p>
         {{ twit.comment_count }}
-        <a href="{% url 'twit_list' %}"> 
+        <a href="{% url 'twits:twit_list' %}"> 
             View All Comments
         </a>
         </p>

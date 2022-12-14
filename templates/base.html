@@ -29,19 +29,19 @@
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                         <h1>
-                            <a class="navbar-brand lead text-primary" href="{% url 'twit_list' %}">
+                            <a class="navbar-brand lead text-primary" href="{% url 'twits:twit_list' %}">
                                 <i class="bi bi-egg-fried"></i> Tweeter
                             </a>
                         </h1>
                         <ul class="nav d-flex mb-2 justify-content-center mb-md-0">
                             {% if user.is_authenticated %}
                             <li class="nav-item align-items-center">
-                                <a href="{% url 'twit_list' %}" class="nav-link px-4 link-dark">
+                                <a href="{% url 'twits:twit_list' %}" class="nav-link px-4 link-dark">
                                     + Home
                                 </a>
                             </li>
                             <li class="nav-item align-items-center">
-                                <a href="{% url 'twit_new' %}" class="nav-link px-4 link-dark">
+                                <a href="{% url 'twits:twit_new' %}" class="nav-link px-4 link-dark">
                                     + New Twit
                                 </a>
                             </li>
