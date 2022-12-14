@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% comment %}
+Marissa Wagner
+CIS 218
+12/1/2022
+{% endcomment %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-12">
+    <h4>
+      {% if object.first_name %}
+        {{ object.first_name }} {{ object.last_name }}
+      {% else %}
+        {{ object.username }}
+      {% endif %}
+    </h4>
+    <h6>
+      <i class="bi-envelope"></i> Email {{ object.email }}
+      <i class="bi-calendar-check"></i> Joined {{ object.date_joined }}
+    </h6>
+    <h6>
+      <i class="bi-twitter"></i> Twits: {{ object.twits.count }}
+      {% if object.date_of_birth %}
+        <i class="bi-calendar"></i> Birthdate {{ object.date_of_birth }}
+      {% endif %}
+    </h6>
+  </div>
+</div>
+<br>
+  <p>
+    <a href="{% url 'accounts:profile_edit' user.pk %}">
+      Edit 
+    </a>
+    <hr>
+    <h4>
+      Comments
+    </h4>
+    <hr>
+    {% for comment in user.all_comments %}
+      <div class="card mb-4">
+        <div class="card-header">
+          <small>{{ comment.created|timesince }} ago</small>
+        </div>
+        <div class="card-body text-start">{{ comment.text }}</div>
+      </div>
+    {% endfor %}
+
+{% endblock content %}
+
+
+
+{% comment %} {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Change Your Profile{% endblock title %}
+
+{% block content %}
+  <h1 class="h3 mb-3 fw-normal">Change Your Profile</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <input type="submit" class="btn btn-success"  value="Update">
+    <a href="{% url 'password_change' %}" class="btn btn-primary float-end">Change Password</a>
+  </form>
+{% endblock content %} {% endcomment %}

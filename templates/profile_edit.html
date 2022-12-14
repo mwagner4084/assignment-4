@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Change Your Profile{% endblock title %}
+
+{% block content %}
+  <h1 class="h3 mb-3 fw-normal">Change Your Profile</h1>
+  <form action="{% url 'accounts:profile' user.pk %}" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <input type="submit" class="btn btn-success"  value="Update">
+    <a href="{% url 'password_change' %}" class="btn btn-primary float-end">Change Password</a>
+  </form>
+{% endblock content %}

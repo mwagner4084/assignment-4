@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Public Profile{% endblock title %}
+
+{% comment %}
+Marissa Wagner
+CIS 218
+12/1/2022
+{% endcomment %}
+
+
+{% comment %} 
+{% block content %}
+<div class="container">
+    <div class="card my-3 bg-light">
+        <div class="card-body">
+            <div class="twit-entry">
+                {% for twit in user. %}
+                <h2 class="card-title">
+                    {{ twit.author }}'s Profile
+                </h2>
+                <p>
+                    Member Since: {{ twit.author.user.date_joined }}
+                </p>
+                <p>
+                    Last login: {{ twit.author.last_login }}
+                </p>
+                <p> 
+                    Number of twits: {{ twit.author.num_of_twits }} Twits
+                </p>
+            </div>
+            <hr>
+            <h2 class="card-title">
+                {{ twit.user }}'s Twits
+            </h2>
+            {% endfor %}
+        </div>
+    {% endblock %}
+ {% endcomment %}
+
+{% block content %}
+  <h1>Public Profile</h1>
+  <div class="row">
+    <div class="col-9"></div>
+    <div class="col-12">
+      <h4>
+        {% if object.first_name %}
+          {{ object.first_name }} {{ object.last_name }}
+        {% else %}
+          {{ object.username }}
+        {% endif %}
+      </h4>
+      <h6>
+        <i class="bi-envelope"></i> Email {{ object.email }}
+        <i class="bi-calendar-check"></i> Joined {{ object.date_joined }}
+      </h6>
+      <h6>
+        <i class="bi-twitter"></i> Twits: {{ object.twits.count }}
+        {% if object.date_of_birth %}
+          <i class="bi-calendar"></i> Birthdate {{ object.date_of_birth }}
+        {% endif %}
+      </h6>
+    </div>
+  </div>
+  <br>
+  <h4>
+    Comments
+  </h4>
+  {% for comment in twit.comment_set.all %}
+    <p>
+        {{ comment.user }} &middot; 
+        {{ comment }}
+    </p>
+  {% endfor %}
+  
+{% endblock content %}

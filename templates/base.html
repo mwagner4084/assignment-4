@@ -36,7 +36,7 @@
                         <ul class="nav d-flex mb-2 justify-content-center mb-md-0">
                             {% if user.is_authenticated %}
                             <li class="nav-item align-items-center">
-                                <a href="{% url 'home' %}" class="nav-link px-4 link-dark">
+                                <a href="{% url 'twit_list' %}" class="nav-link px-4 link-dark">
                                     + Home
                                 </a>
                             </li>
@@ -59,7 +59,7 @@
                                     </li>
                                     {% endif %}
                                     <li>
-                                        <a class="dropdown-item" href="{% url 'accounts:user_detail' user.pk %}">
+                                        <a class="dropdown-item" href="{% url 'accounts:profile' user.pk %}">
                                             View Profile
                                         </a>
                                     </li>
