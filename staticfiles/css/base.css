@@ -1,0 +1,57 @@
+body {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    margin: 0;
+}
+header {
+border-bottom: 1px solid #999;
+margin-bottom: 2rem;
+text-align: center;
+text-align: center;
+align-items: center;
+}
+
+.container {
+    max-width: 950px;
+    flex-direction: row-reverse;
+}
+
+.bg-secondary {
+    --bs-bg-opacity: .25;
+    background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity));
+}
+
+form {
+	align-items: center;
+	text-align: center;
+	color: black;
+}
+
+.card-body {
+    align-items: center;
+    text-align: center;
+}
+
+.twit-entry {
+margin-bottom: 2rem;
+}
+
+.twit-entry h2 {
+margin: 0.5rem 0;
+}
+.twit-entry h2 a,
+.twit-entry h2 a:visited {
+color: blue;
+text-decoration: none;
+}
+.twit-entry p { 
+margin: 0;
+font-weight: 400;
+}
+.twit-entry h2 a:hover {
+    color: red;
+    }
+
+.twit-img {
+    max-width: 300px;
+}
